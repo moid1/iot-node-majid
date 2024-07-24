@@ -10,7 +10,7 @@ const initDB = require("./app/utility/psqldb_init.js");
 //
 
 const hostname = "127.0.0.1";
-const serverPort = 8082;
+const serverPort = 3000;
 
 const corsOpts = {
     origin: '*',
