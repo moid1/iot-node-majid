@@ -61,6 +61,10 @@ require("./app/routes/history.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT || serverPort;
 
+app.get("/", (req, res) => {
+  return res.send({ status: 200, message: "IOT" });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
     // const { asUTCDate, defaultDate, getDatenow, getLocalDatenow, toLocalDate } = require("./app/utility/date_utils");
