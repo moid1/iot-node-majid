@@ -134,6 +134,11 @@ function generateDeviceInformation(doc, report_detail, top_position) {
     .font("Helvetica-Bold")
     .text(report_detail.log_interval + " mins", 370, top_position)
 
+    .font(PalatinoBold)
+    .text("Device Location:", 50, top_position + 40) // New entry
+    .font("Helvetica-Bold")
+    .text(report_detail.device_location || "N/A", 130, top_position + 40) // New entry
+
     .moveDown();
 }
 
