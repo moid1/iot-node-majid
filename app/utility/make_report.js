@@ -55,11 +55,15 @@ const report_detail_sample = {
 };
 
 function makeReport(report_detail, outputPath) {
-  if (!fs.existsSync(outputPath)) {
-    fs.mkdirSync(outputPath, { recursive: true });
+  // Ensure the directory exists
+  const dir = path.dirname(outputPath);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
   }
 
-  let doc = new PDFDocument({ size: "A4", margin: margin });
+  const doc = new PDFDocument({ size: "A4", margin: margin });
+  doc.pipe(fs.createWriteStream(outputPath)); // Pipe output before generating content
+
   generateHeader(doc, report_detail);
   generateFileInformation(doc, report_detail, 130);
   generateDeviceInformation(doc, report_detail, 200);
@@ -67,9 +71,7 @@ function makeReport(report_detail, outputPath) {
   generateFooter(doc, 1);
   generateTable(doc, report_detail.data_logs);
 
-  doc.pipe(fs.createWriteStream(outputPath));
   doc.end();
-
 }
 
 function generateHeader(doc, report_detail) {
