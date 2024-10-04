@@ -55,6 +55,11 @@ const report_detail_sample = {
 };
 
 function makeReport(report_detail, path) {
+  const dir = path.dirname(path);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+
   let doc = new PDFDocument({ size: "A4", margin: margin });
   generateHeader(doc, report_detail);
   generateFileInformation(doc, report_detail, 130);
