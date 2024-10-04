@@ -29,6 +29,12 @@ module.exports = (sequelize, Sequelize) => {
         remark: {
             type: Sequelize.STRING
         },
+        location: {
+            type: Sequelize.STRING
+        },
+        last_calibration_date: {
+            type: Sequelize.STRING
+        },
         created_at: {
             type: Sequelize.DATE,
             get() {
