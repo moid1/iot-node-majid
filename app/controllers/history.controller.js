@@ -26,7 +26,6 @@ exports.get_History = async (req, res) => {
             id: device_id, status: 1, tenant_id: req.params.tenant_id
         },
     }).then(async dev_data => {
-        console.log('device data', dev_data);
         let latest_state = await SensorData.findOne({
             where: {
                 sn: dev_data['sn'],
@@ -115,6 +114,8 @@ exports.make_Report = async (req, res) => {
             model: db.DeviceTypes,
         }
     }).then(async dev_data => {
+        console.log('device data', dev_data);
+
         let latest_state = await SensorData.findOne({
             where: {
                 sn: dev_data['sn'],
