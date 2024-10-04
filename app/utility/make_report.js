@@ -54,10 +54,9 @@ const report_detail_sample = {
   ]
 };
 
-function makeReport(report_detail, path) {
-  const dir = path.dirname(path);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
+function makeReport(report_detail, outputPath) {
+  if (!fs.existsSync(outputPath)) {
+    fs.mkdirSync(outputPath, { recursive: true });
   }
 
   let doc = new PDFDocument({ size: "A4", margin: margin });
@@ -68,8 +67,9 @@ function makeReport(report_detail, path) {
   generateFooter(doc, 1);
   generateTable(doc, report_detail.data_logs);
 
+  doc.pipe(fs.createWriteStream(outputPath));
   doc.end();
-  doc.pipe(fs.createWriteStream(path));
+
 }
 
 function generateHeader(doc, report_detail) {
