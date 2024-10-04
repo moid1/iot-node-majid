@@ -53,14 +53,15 @@ exports.create = (req, res) => {
         var condition = { status: 1, tenant_id: req.params.tenant_id };
         Device.count({ where: condition })
             .then(cnt => {
-                if (billingRes.sensors == undefined) {
+                if (false || billingRes.sensors == undefined) {
                     res.status(400).send({
                         message: "Cannot add a new device because billing check failed."
                     })
-                } else if (cnt >= billingRes.sensors) {
-                    res.status(400).send({
-                        message: "Cannot add a new device more than " + billingRes.sensors
-                    })
+                
+                // } else if (cnt >= billingRes.sensors) {
+                //     res.status(400).send({
+                //         message: "Cannot add a new device more than " + billingRes.sensors
+                //     })
                 } else {
                     // Create a Device
                     const device = {
