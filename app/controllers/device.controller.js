@@ -73,6 +73,8 @@ exports.create = (req, res) => {
                         password: req.body.devicePassword,
                         interval: req.body.dataInterval,
                         remark: req.body.remark,
+                        location:req.body.location,
+                        last_calibration_date:req.body.last_calibration_date,
                         created_at: defaultDate(0),
                         updated_at: defaultDate(0),
                         expire_at: defaultDate(3)
