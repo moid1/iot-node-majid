@@ -121,13 +121,18 @@ function generateDeviceInformation(doc, report_detail, top_position) {
   doc
     .fontSize(10)
     .font(PalatinoBold)
-    .text("Device Type:", 50, top_position)
+    .text("Device Name:", 50, top_position) // New entry for Device Name
     .font("Helvetica-Bold")
-    .text(report_detail.device_type, 130, top_position)
+    .text(report_detail.device_name || "N/A", 130, top_position) // New entry for Device Name
     .font(PalatinoBold)
-    .text("ID:", 50, top_position + 20)
+    .text("Device Type:", 50, top_position + 20)
     .font("Helvetica-Bold")
-    .text(report_detail.device_sn, 130, top_position + 20)
+    .text(report_detail.device_type, 130, top_position + 20)
+
+    .font(PalatinoBold)
+    .text("ID:", 50, top_position + 40)
+    .font("Helvetica-Bold")
+    .text(report_detail.device_sn, 130, top_position + 40)
 
     .font(PalatinoBold)
     .text("Log Interval:", 300, top_position)
@@ -135,9 +140,9 @@ function generateDeviceInformation(doc, report_detail, top_position) {
     .text(report_detail.log_interval + " mins", 370, top_position)
 
     .font(PalatinoBold)
-    .text("Device Location:", 50, top_position + 40) // New entry
+    .text("Device Location:", 50, top_position + 60) // Adjusted position for Device Location
     .font("Helvetica-Bold")
-    .text(report_detail.location || "N/A", 130, top_position + 40) // New entry
+    .text(report_detail.location || "N/A", 130, top_position + 60) // Adjusted position for Device Location
 
     .moveDown();
 }

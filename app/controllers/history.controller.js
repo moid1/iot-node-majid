@@ -114,7 +114,6 @@ exports.make_Report = async (req, res) => {
             model: db.DeviceTypes,
         }
     }).then(async dev_data => {
-        console.log('device data', dev_data);
 
         let latest_state = await SensorData.findOne({
             where: {
@@ -196,7 +195,8 @@ exports.make_Report = async (req, res) => {
             report_detail['avg_hum'] = avg_hum.toFixed(1);
             report_detail['file_created_date'] = getLocalDatenow();
             report_detail['device_type'] = device_info['device_type']['name'];
-            report_detail['location'] = device_info['device_type']['location'];
+            report_detail['device_name'] = device_info['name'];
+            report_detail['location'] = device_info['location'];
             report_detail['log_interval'] = device_info['interval'];
             if (data.length == 0) {
                 report_detail['first_point'] = "--/--/--";
